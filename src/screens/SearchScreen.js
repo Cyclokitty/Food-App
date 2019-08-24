@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import SearchBar from '../components/SearchBar';
 
 const SearchScreen = () => {
+    const [searchBarText, setSearchBarText] = useState('');
+
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Search Screen</Text>
+            <SearchBar 
+                onSearchText={(newText) => setSearchBarText(newText)}
+                value={searchBarText}
+            />
+            <Text>{searchBarText}</Text>
         </View>
     )
 };
@@ -15,11 +22,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fffbe5',
     },
-    title: {
-        color: '#3F7F6A',
-        fontSize: 24,
-        alignSelf: 'center',
-    }
 });
 
 export default SearchScreen;
