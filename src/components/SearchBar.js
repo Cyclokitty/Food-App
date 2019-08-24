@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, Text, StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements'
 
-const SearchBar = (props) => {
+const SearchBar = ({ onTermChange, onTermSubmit, term }) => {
     return (
         <View style={styles.container}>
             <Icon 
@@ -14,8 +14,12 @@ const SearchBar = (props) => {
             />            
             <TextInput
                 style={styles.inputText}
-                onChangeText={(newText) => props.onSearchText}
-                placeholder='Search'
+                placeholder='Search'               
+                autoCapitalize='none'
+                autoCorrect={false}
+                onEndEditing={() => onTermSubmit()}
+                onChangeText={newTerm => onTermChange(newTerm)}
+                value={term}
             />
         </View>
             
