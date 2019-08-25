@@ -57,3 +57,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# Axios base setup with api key
+/src/api/yelp.js
