@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import ResultsList from '../components/ResultsList';
 import useResults from '../hooks/useResults';
@@ -25,11 +25,15 @@ const SearchScreen = () => {
                 onTermSubmit={() => searchApi(term)}
             />
             <Text>We have found {results.length} results so far.</Text>
+
             {errorMessage.length > 0 ? <Text>Sorry, network error. Please try again later</Text> : null}
 
-            <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'}/>
-            <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Affordable'}/>
-            <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'}/>
+            <ScrollView style={{flex: 1}}>
+                <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'}/>
+                <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Affordable'}/>
+                <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'}/>
+            </ScrollView>
+            
         </View>
     )
 };

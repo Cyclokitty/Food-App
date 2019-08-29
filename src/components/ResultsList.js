@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 
 const ResultsList = ({category, restaurants}) => {
 
@@ -8,7 +8,17 @@ const ResultsList = ({category, restaurants}) => {
             <Text style={styles.categoryTitle}>{category}</Text>
             <FlatList 
             data={restaurants}
-            renderItem={({ item }) => <Text style={styles.listText}>{item.name} </Text>}
+            renderItem={({ item }) => 
+                <View>
+                    <Image 
+                        style={{ width: 125, height: 125 }}
+                        source={{ uri: item.image_url }}
+                    />
+                    <Text style={styles.listText}>{item.name} </Text>
+                </View>
+                
+            
+            }
             keyExtractor={(item) => item.id}
             horizontal={true}           
             />
@@ -22,7 +32,7 @@ const styles = StyleSheet.create({
         color: '#994c58'
     },
     listText: {
-        fontSize: 18,
+        fontSize: 16,
         color: '#4C5899'
     }
 });
