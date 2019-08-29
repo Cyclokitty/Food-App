@@ -1,7 +1,8 @@
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import RestaurantCard from '../components/RestaurantCard';
 
-const ResultsList = ({category, restaurants}) => {
+const ResultsList = ({ category, restaurants }) => {
     return (
         <View> 
 
@@ -10,20 +11,13 @@ const ResultsList = ({category, restaurants}) => {
             <FlatList 
             data={restaurants}
             renderItem={({ item }) => 
-                <View style={styles.resultView}>
-                    
-                    <Image 
-                        style={{ width: 150, height: 150 }}
-                        source={{ uri: item.image_url }}
-                    />
-                    <Text 
-                        style={styles.listText}
-                        numberOfLines={2}>
-                        {item.name} 
-                        
-                    </Text>
-                    <Text>{item.rating} Stars & {item.review_count} reviews</Text>
-                </View>}            
+                <RestaurantCard 
+                    image={item.image_url}
+                    name={item.name}
+                    rating={item.rating}
+                    reviews={item.review_count}
+                />             
+            }            
             keyExtractor={(item) => item.id}
             horizontal={true}           
             />           
@@ -36,16 +30,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: '#58994c'
     },
-    resultView: {
-        margin: 10,
-        padding: 10,
-        width: 200,
-        height: 'auto',
-    },
-    listText: {
-        fontSize: 16,
-        color: '#4C5899'
-    }
+    
 });
 
 export default ResultsList;
