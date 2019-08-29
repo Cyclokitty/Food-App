@@ -30,8 +30,9 @@ const SearchScreen = () => {
 
             <ScrollView style={{flex: 1}}>
                 <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'}/>
-                <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Affordable'}/>
+                <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Pricier'}/>
                 <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'}/>
+                <ResultsList restaurants={ filterResultsByPrice('$$$$') } category={'Super Luxury'}/>
             </ScrollView>
             
         </View>
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#fffbe5',
+        padding: 5,
     },
 });
 
