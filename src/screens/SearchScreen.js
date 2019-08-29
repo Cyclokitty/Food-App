@@ -9,29 +9,13 @@ const SearchScreen = () => {
     const [searchApi, results, errorMessage] = useResults();
     
     console.log(results);
-    // filter results
-    const cheap = results.filter(el => {
-        if (el.price === '$') {
-            return el;
-        }
-    });
 
-    const affordable = results.filter(el => {
-        if (el.price === '$$' ) {
-            return el;
-        }
-    });
-
-    const pricy = results.filter(el => {
-        if (el.price >= '$$$') {
-            return el;
-        }
-    });
-
-    console.log(cheap);
-    console.log(affordable);
-    console.log(pricy);
-
+    // filter results by price
+    const filterResultsByPrice = (price) => {
+        return results.filter(result => {
+            return result.price === price;
+        })
+    };
 
     return (
         <View style={styles.container}>
@@ -43,9 +27,9 @@ const SearchScreen = () => {
             <Text>We have found {results.length} results so far.</Text>
             {errorMessage.length > 0 ? <Text>Sorry, network error. Please try again later</Text> : null}
 
-            <ResultsList restaurants={cheap} category={'Inexpensive'}/>
-            <ResultsList restaurants={affordable} category={'Affordable'}/>
-            <ResultsList restaurants={pricy} category={'Many Moneys'}/>
+            <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'}/>
+            <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Affordable'}/>
+            <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'}/>
         </View>
     )
 };

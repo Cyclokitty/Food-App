@@ -1,13 +1,13 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-const ResultsList = (props) => {
+const ResultsList = ({category, restaurants}) => {
 
     return (
         <View>
-            <Text style={styles.categoryTitle}>{props.category}</Text>
+            <Text style={styles.categoryTitle}>{category}</Text>
             <FlatList 
-            data={props.restaurants}
+            data={restaurants}
             renderItem={({ item }) => <Text style={styles.listText}>{item.name} </Text>}
             keyExtractor={(item) => item.id}
             horizontal={true}           
