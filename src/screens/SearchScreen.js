@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
-import yelp from '../api/yelp';
+import ResultsList from '../components/ResultsList';
 import useResults from '../hooks/useResults';
 
 const SearchScreen = () => {
@@ -9,6 +9,29 @@ const SearchScreen = () => {
     const [searchApi, results, errorMessage] = useResults();
     
     console.log(results);
+    // filter results
+    const cheap = results.filter(el => {
+        if (el.price === '$') {
+            return el;
+        }
+    });
+
+    const affordable = results.filter(el => {
+        if (el.price === '$$' ) {
+            return el;
+        }
+    });
+
+    const pricy = results.filter(el => {
+        if (el.price >= '$$$') {
+            return el;
+        }
+    });
+
+    console.log(cheap);
+    console.log(affordable);
+    console.log(pricy);
+
 
     return (
         <View style={styles.container}>
@@ -19,6 +42,10 @@ const SearchScreen = () => {
             />
             <Text>We have found {results.length} results so far.</Text>
             {errorMessage.length > 0 ? <Text>Sorry, network error. Please try again later</Text> : null}
+
+            <ResultsList restaurants={cheap} category={'Inexpensive'}/>
+            <ResultsList restaurants={affordable} category={'Affordable'}/>
+            <ResultsList restaurants={pricy} category={'Many Moneys'}/>
         </View>
     )
 };
