@@ -16,10 +16,12 @@ const ResultsList = ({ category, restaurants }) => {
                     name={item.name}
                     rating={item.rating}
                     reviews={item.review_count}
+                    id={item.id}
                 />             
             }            
             keyExtractor={(item) => item.id}
-            horizontal={true}           
+            horizontal={true}     
+            showsHorizontalScrollIndicator={false}      
             />           
         </View>
     )

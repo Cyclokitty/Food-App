@@ -24,7 +24,6 @@ const SearchScreen = () => {
                 onTermChange={(newTerm) => setTerm(newTerm)}
                 onTermSubmit={() => searchApi(term)}
             />
-            <Text>We have found {results.length} results so far.</Text>
 
             {errorMessage.length > 0 ? <Text>Sorry, network error. Please try again later</Text> : null}
 

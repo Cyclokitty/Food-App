@@ -1,14 +1,14 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const RestaurantCard = ({image, name, rating, reviews}) => {
+const RestaurantCard = ({image, name, rating, reviews, id}) => {
     return (
         <View style={styles.resultView}>
             <TouchableOpacity
-                onPress={() => console.log(`clickky! ${name}`)}
+                onPress={() => console.log(`clickky! ${name} & ${id}`)}
             >
                 <Image 
-                    style={{ width: 150, height: 150 }}
+                    style={{ width: 175, height: 132, borderRadius: 4 }}
                     source={{ uri: image }}
                 />
                 <Text
