@@ -27,7 +27,7 @@ const SearchScreen = () => {
 
             {errorMessage.length > 0 ? <Text>Sorry, network error. Please try again later</Text> : null}
 
-            <ScrollView style={{flex: 1}}>
+            <ScrollView>
                 <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'}/>
                 <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Pricier'}/>
                 <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'}/>
