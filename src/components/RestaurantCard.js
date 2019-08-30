@@ -1,11 +1,16 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const RestaurantCard = ({image, name, rating, reviews, id}) => {
+const RestaurantCard = ({image, name, rating, reviews, id, navigation}) => {
     return (
         <View style={styles.resultView}>
             <TouchableOpacity
-                onPress={() => console.log(`clickky! ${name} & ${id}`)}
+                onPress={() => {
+                    navigation.navigate('Details', {
+                        id: id,
+                        name: name,
+                    })
+                }}
             >
                 <Image 
                     style={{ width: 175, height: 132, borderRadius: 4 }}

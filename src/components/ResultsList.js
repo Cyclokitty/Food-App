@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import RestaurantCard from '../components/RestaurantCard';
 
-const ResultsList = ({ category, restaurants }) => {
+const ResultsList = ({ category, restaurants, navigation }) => {
     return (
         <View> 
 
@@ -17,6 +17,7 @@ const ResultsList = ({ category, restaurants }) => {
                     rating={item.rating}
                     reviews={item.review_count}
                     id={item.id}
+                    navigation={navigation}
                 />             
             }            
             keyExtractor={(item) => item.id}

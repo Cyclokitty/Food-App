@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar';
 import ResultsList from '../components/ResultsList';
 import useResults from '../hooks/useResults';
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
     const [term, setTerm] = useState('');
     const [searchApi, results, errorMessage] = useResults();
     
@@ -28,10 +28,10 @@ const SearchScreen = () => {
             {errorMessage.length > 0 ? <Text>Sorry, network error. Please try again later</Text> : null}
 
             <ScrollView>
-                <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'}/>
-                <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Pricier'}/>
-                <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'}/>
-                <ResultsList restaurants={ filterResultsByPrice('$$$$') } category={'Super Luxury'}/>
+                <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'} navigation={navigation}/>
+                <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Pricier'} navigation={navigation}/>
+                <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'} navigation={navigation}/>
+                <ResultsList restaurants={ filterResultsByPrice('$$$$') } category={'Super Luxury'} navigation={navigation}/>
             </ScrollView>
             
         </View>

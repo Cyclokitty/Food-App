@@ -28,7 +28,7 @@ export default () => {
     // call searchApi() when component is first rendered
     //searchApi('pasta');
     useEffect(() => {
-        searchApi('pizza');
+        searchApi('cafe');
     }, []);
 
     return [searchApi, results, errorMessage];
