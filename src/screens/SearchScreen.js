@@ -4,13 +4,10 @@ import SearchBar from '../components/SearchBar';
 import ResultsList from '../components/ResultsList';
 import useResults from '../hooks/useResults';
 
-const SearchScreen = ({ navigation }) => {
+const SearchScreen = () => {
     const [term, setTerm] = useState('');
     const [searchApi, results, errorMessage] = useResults();
-    
-    console.log(results);
 
-    // filter results by price
     const filterResultsByPrice = (price) => {
         return results.filter(result => {
             return result.price === price;
@@ -28,10 +25,10 @@ const SearchScreen = ({ navigation }) => {
             {errorMessage.length > 0 ? <Text>Sorry, network error. Please try again later</Text> : null}
 
             <ScrollView>
-                <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'} navigation={navigation}/>
-                <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Pricier'} navigation={navigation}/>
-                <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'} navigation={navigation}/>
-                <ResultsList restaurants={ filterResultsByPrice('$$$$') } category={'Super Luxury'} navigation={navigation}/>
+                <ResultsList restaurants={ filterResultsByPrice('$') } category={'Inexpensive'} />
+                <ResultsList restaurants={ filterResultsByPrice('$$') } category={'Pricier'} />
+                <ResultsList restaurants={ filterResultsByPrice('$$$') } category={'Many Moneys'} />
+                <ResultsList restaurants={ filterResultsByPrice('$$$$') } category={'Super Luxury'} />
             </ScrollView>
             
         </View>
