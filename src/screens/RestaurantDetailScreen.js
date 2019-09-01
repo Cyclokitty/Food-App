@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import yelp from '../api/yelp';
 
 const RestaurantDetailScreen = ({ navigation }) => {
@@ -19,22 +19,23 @@ const RestaurantDetailScreen = ({ navigation }) => {
     console.log(results);
 
     return (      
-        <View>
+        <View style={styles.container}>
             {results !== null 
-            ? <View>
-                <Text>{results.name}</Text>
-                <Text>{results.display_phone}</Text>
-                    <FlatList 
-                        data={results.location.display_address}
-                        renderItem={({item}) => <Text>{item}</Text>}
-                        keyExtractor={(index) => index}
-                    />
-                    
-                    <FlatList 
-                        data={results.photos}
-                        renderItem={({item}) => <Image style={{ width: 175, height: 132, borderRadius: 4 }} source={{uri: item}} />} 
-                        keyExtractor={(index) => index}
-                    />
+            ? <View style={styles.container}>
+                <Text style={styles.categoryTitle}>{results.name}</Text>
+                <Text style={styles.detailsText}>{results.display_phone}</Text>
+
+                    {results.location.display_address.map((item, index) => {
+                        return <Text key={index} style={styles.detailsText}>{item}</Text>
+                    })}
+
+                    <ScrollView>
+                        <FlatList 
+                            data={results.photos}
+                            renderItem={({item}) => <Image style={{ width: 300, height: 200, borderRadius: 4, marginBottom: 10, alignSelf: 'center' }} source={{uri: item}} />} 
+                            keyExtractor={(index) => index}
+                        />
+                    </ScrollView>
                 </View>
             : null
             }
@@ -44,7 +45,22 @@ const RestaurantDetailScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#fffbe5',
+        padding: 5,
+        justifyContent: 'center',
+    },
+    categoryTitle: {
+        fontSize: 24,
+        color: '#58994c',
+        alignSelf: 'center'
+    },
+    detailsText: {
+        fontSize: 18,
+        alignSelf: 'center',
+    }
 });
 
 export default RestaurantDetailScreen;
